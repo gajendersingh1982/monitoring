@@ -3,7 +3,7 @@ variable "prefix" {
 }
 
 variable "region_name" {
-  default = "tokyo"
+  default = "virginia"
 }
 
 variable "service" {
@@ -46,4 +46,9 @@ variable "tags" {
     "Stage"     = "dev"
     "Creator"   = "terraform"
   }
+}
+
+variable "myip" {
+  description = "my IP"
+  default = "223.235.140.22/32"
 }

@@ -3,7 +3,7 @@
 # It runs on host startup.
 # Log everything we do.
 set -x
-exec >> /var/log/user-data.log 2>&1
+exec >> /var/log/user-data-pdb.log 2>&1
 
 sudo apt-get update -y
 
@@ -42,6 +42,17 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
+  - job_name: 'nodes-dev'
+    ec2_sd_configs:
+    - region: us-west-1
+    port: 9100
+    relabel_configs:
+    # Only monitor instances with a Name starting with "dev-"
+    - source_labels: [__meta_ec2_tag_Name]
+    regex: dev-.*
+    action: keep
+    - source_labels: [__meta_ec2_tag_Name,__meta_ec2_availability_zone]
+    target_label: instance
 EOM
 
 #Change the ownership of the file to prometheus user
@@ -76,4 +87,5 @@ EOM
 
 # reload deamon and start service 
 sudo systemctl daemon-reload
+sudo systemctl enable prometheus
 sudo systemctl start prometheus

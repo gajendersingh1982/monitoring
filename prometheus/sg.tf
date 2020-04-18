@@ -23,7 +23,14 @@ module "prometheus_sg" {
       from_port   = 9090
       to_port     = 9090
       protocol    = "tcp"
-      description = "PDB ports"
+      description = "PDB port"
+      cidr_blocks = var.myip
+    },
+    {
+      from_port   = 3000
+      to_port     = 3000
+      protocol    = "tcp"
+      description = "Grafana port"
       cidr_blocks = var.myip
     },
     {
