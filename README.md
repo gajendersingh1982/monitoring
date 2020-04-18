@@ -14,6 +14,8 @@
  - It installs  Prometheus (Refer: ./Prometheus/files/setup-pdb.sh)
 
 #### To Create full network with prometheus servers run following command in root dir
+```hcl
 - terraform init
 - terraform plan
 - terraform apply
+```
