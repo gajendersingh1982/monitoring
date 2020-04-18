@@ -20,6 +20,6 @@
 - terraform apply
 ```
 
-:shipit::+1:
+:shipit:
 Coming up:
 - Configure Grafana server
