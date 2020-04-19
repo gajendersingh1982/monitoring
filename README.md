@@ -32,4 +32,4 @@
 :shipit: Upcoming...
 - Scripts for BlackBox Exporter
 - Script for JMX Exporter
-- Grafana dashboards JSON foreasy install
+- Grafana dashboards JSON for easy install
