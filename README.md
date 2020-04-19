@@ -1,4 +1,4 @@
-# monitoring
+# Monitoring Setup for small service
  Terraform Script for creating monitoring cluster
  
 ### Network folder creates following resources
