@@ -35,23 +35,22 @@ FILE="/etc/prometheus/prometheus.yml"
 # edit prometheus config file for the PDB server
 /bin/cat <<EOM >$FILE
 global:
-  scrape_interval: 30s
- 
+  scrape_interval: 10s
+
 scrape_configs:
   - job_name: 'prometheus'
-    scrape_interval: 5s
+    scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9090']
-  - job_name: 'nodes-dev'
+  - job_name: 'node-exporter'
+    scrape_interval: 10s
     ec2_sd_configs:
       - region: us-east-1
-        access_key: xxx
-        secret_key: xxx
         port: 9100
     relabel_configs:
-        # Only monitor instances with a Name starting with "-dev-"
+        # Only monitor instances with a Name starting with "tf-tokyo-dev-galaxy-badge-"
       - source_labels: [__meta_ec2_tag_Name]
-        regex: tf-tokyo-dev-galaxy-badge-web-.*
+        regex: tf-tokyo-dev-galaxy-badge-.*
         action: keep
       - source_labels: [__meta_ec2_instance_id]
         target_label: instance

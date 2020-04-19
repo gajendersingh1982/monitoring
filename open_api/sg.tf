@@ -16,13 +16,6 @@ module "openapi_sg" {
   }
   ]
 
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 0
-      to_port     = 65535
-      protocol    = "all"
-      description = "Pvt subnet is open to all private IPs"
-      cidr_blocks = var.vpc_cidr
-    },
-  ]
+  ingress_cidr_blocks      = ["10.0.0.0/20"]
+  ingress_rules            = ["all-all"]
 }

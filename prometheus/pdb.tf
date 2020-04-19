@@ -4,16 +4,24 @@ provider "aws" {
 }
 
 data "template_file" "setup-pdb" {
-  template = file("./prometheus/files/setup-pdb.sh")
+  template = file("./scripts/setup-pdb.sh")
   vars = {
     # Any variables to be passed in shell script
   }
 }
 
 data "template_file" "setup-grafana" {
-  template = file("./prometheus/files/setup-grafana.sh")
+  template = file("./scripts/setup-grafana.sh")
   vars = {
     # Any variables to be passed in shell script
+  }
+}
+
+data "template_file" "setup-nodeexporter" {
+  template = file("./scripts/setup-nodeexporter.sh")
+  vars = {
+    # Any variables to be passed in shell script
+    node_exporter_version = "0.18.1"
   }
 }
 
@@ -21,18 +29,25 @@ data "template_cloudinit_config" "master" {
   gzip          = true
   base64_encode = true
 
-  # get common user_data
+  # get user_data --> Prometheus
   part {
     filename     = "prometheus.cfg"
     content_type = "text/x-shellscript"
     content      = "${data.template_file.setup-pdb.rendered}"
   }
 
-  # get master user_data
+  # get user_data --> Grafana
   part {
     filename     = "grafana.cfg"
     content_type = "text/x-shellscript"
     content      = "${data.template_file.setup-grafana.rendered}"
+  }
+
+   # get user_data --> Node Exporter
+  part {
+    filename     = "nodeexporter.cfg"
+    content_type = "text/x-shellscript"
+    content      = "${data.template_file.setup-nodeexporter.rendered}"
   }
 }
 
@@ -48,11 +63,16 @@ module "prometheus" {
   instance_type           = var.instance_type
   key_name                = var.pdb_key_name
   monitoring              = false
-  user_data               = data.template_cloudinit_config.master.rendered
-  #user_data              = data.template_file.setup-pdb.rendered
 
   vpc_security_group_ids  = [module.prometheus_sg.this_security_group_id]
   subnet_id               = var.public_subnet[0]
+
+  # set instance profile to give EC2 read only permissions
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile_api.name
+
+  # set user data for configuring server  
+  user_data               = data.template_cloudinit_config.master.rendered
+
   tags                    = var.tags
 }
 

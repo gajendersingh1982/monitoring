@@ -3,7 +3,7 @@
 # It runs on host startup.
 # Log everything we do.
 set -x
-exec >> /var/log/user-data-pdb.log 2>&1
+exec >> /var/log/user-data-grafana.log 2>&1
 
 sudo apt-get update -y
 

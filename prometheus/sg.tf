@@ -16,8 +16,8 @@ module "prometheus_sg" {
   }
   ]
 
-  ingress_cidr_blocks      = ["10.0.0.0/20"]
-  ingress_rules            = ["https-443-tcp"]
+  ingress_cidr_blocks      = [var.vpc_cidr]
+  ingress_rules            = ["all-all"]
   ingress_with_cidr_blocks = [
     {
       from_port   = 9090

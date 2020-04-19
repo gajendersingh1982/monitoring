@@ -1,3 +1,7 @@
+variable "myip" {
+  description = "my IP"
+  default = "223.235.140.22/32"
+}
 variable "prefix" {
   default = "tf"
 }
@@ -46,9 +50,4 @@ variable "tags" {
     "Stage"     = "dev"
     "Creator"   = "terraform"
   }
-}
-
-variable "myip" {
-  description = "my IP"
-  default = "223.235.140.22/32"
 }

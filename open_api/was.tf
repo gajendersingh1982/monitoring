@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 data "template_file" "setup-nodeexporter" {
-  template = file("./open_api/files/setup-nodeexporter.sh")
+  template = file("./scripts/setup-nodeexporter.sh")
   vars = {
     # Any variables to be passed in shell script
     node_exporter_version = "0.18.1"
