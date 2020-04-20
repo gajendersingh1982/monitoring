@@ -42,7 +42,7 @@ variable "name" {
 variable "open_api_count" {
   description = "Number of instances to launch"
   type        = number
-  default     = 1
+  default     = 5
 }
 
 
