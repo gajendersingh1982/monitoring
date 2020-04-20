@@ -23,15 +23,16 @@ module "pdb" {
     private_subnet  = module.network.private_subnets    # variables from network module
     vpc_cidr        = var.vpc_cidr                      # variables from network module
     myip            = var.myip
+    subnet_ids      = module.network.public_subnets
     tags            = var.tags
 }
 
-module "openapi" {
-    source          = "./open_api"
+# module "openapi" {
+#     source          = "./open_api"
 
-    vpc_id          = module.network.vpc_id             # variables from network module
-    public_subnet   = module.network.public_subnets     # variables from network module
-    private_subnet  = module.network.private_subnets    # variables from network module
-    vpc_cidr        = var.vpc_cidr                      # variables from network module
-    tags            = var.tags
-}
+#     vpc_id          = module.network.vpc_id             # variables from network module
+#     public_subnet   = module.network.public_subnets     # variables from network module
+#     private_subnet  = module.network.private_subnets    # variables from network module
+#     vpc_cidr        = var.vpc_cidr                      # variables from network module
+#     tags            = var.tags
+# }

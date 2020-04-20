@@ -12,9 +12,11 @@ data "template_file" "setup-pdb" {
 
 data "template_file" "setup-grafana" {
   template = file("./scripts/setup-grafana.sh")
-  vars = {
-    # Any variables to be passed in shell script
-  }
+  # vars = {
+  #   # Any variables to be passed in shell script
+  #   GRAFANA_URL="http://localhost:3000"
+  #   COOKIEJAR="/tmp/grafana_session_$$"
+  # }
 }
 
 data "template_file" "setup-nodeexporter" {

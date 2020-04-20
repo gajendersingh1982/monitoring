@@ -29,9 +29,7 @@ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 
 #Create the prometheus.yml file.
 touch /etc/prometheus/prometheus.yml
-
 FILE="/etc/prometheus/prometheus.yml"
-
 # edit prometheus config file for the PDB server
 /bin/cat <<EOM >$FILE
 global:
@@ -62,9 +60,7 @@ sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 #Register this as service
 ## add prometheus as a service ##
 touch /etc/systemd/system/prometheus.service
-
 FILE="/etc/systemd/system/prometheus.service"
-
 # edit prometheus service file for the PDB server
 /bin/cat <<EOM >$FILE
 [Unit]

@@ -42,14 +42,7 @@ variable "name" {
 variable "pdb_count" {
   description = "Number of instances to launch"
   type        = number
-  default     = 1
-}
-
-
-variable "instance_initiated_shutdown_behavior" {
-  description = "Shutdown behavior for the instance" # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior
-  type        = string
-  default     = ""
+  default     = 0
 }
 
 variable "instance_type" {
