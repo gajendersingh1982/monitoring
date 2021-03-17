@@ -1,6 +1,6 @@
 variable "myip" {
   description = "my IP"
-  default = "223.235.140.22/32"
+  default = "x.x.x.x/32"
 }
 variable "prefix" {
   default = "tf"
@@ -11,7 +11,7 @@ variable "region_name" {
 }
 
 variable "service" {
-  default = "galaxy-badge"
+  default = "test"
 }
 
 variable "stage" {
@@ -46,7 +46,7 @@ variable "tags" {
   description = "A mapping of tags to assign to the resource"
   default = {
     "Owner"     = "gajender.s"
-    "Service" = "galaxy-badge"
+    "Service" = "test"
     "Stage"     = "dev"
     "Creator"   = "terraform"
   }
