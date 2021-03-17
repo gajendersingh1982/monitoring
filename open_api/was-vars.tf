@@ -7,7 +7,7 @@ variable "region_name" {
 }
 
 variable "service" {
-  default = "galaxy-badge"
+  default = "test"
 }
 
 variable "stage" {
