@@ -48,9 +48,9 @@ scrape_configs:
       - region: us-east-1
         port: 9100
     relabel_configs:
-        # Only monitor instances with a Name starting with "tf-tokyo-dev-galaxy-badge-"
+        # Only monitor instances with a Name starting with "tf-tokyo-dev-test-"
       - source_labels: [__meta_ec2_tag_Name]
-        regex: tf-tokyo-dev-galaxy-badge-.*
+        regex: tf-tokyo-dev-test-.*
         action: keep
       - source_labels: [__meta_ec2_instance_id]
         target_label: instance
